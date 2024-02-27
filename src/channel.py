@@ -2,7 +2,7 @@ import json
 import os
 from googleapiclient.discovery import build
 
-api_key: str = os.getenv('YT_API_KEY')
+
 
 
 class Channel:
@@ -18,9 +18,9 @@ class Channel:
         self.views_count = self.get_channel()['items'][0]['statistics']['viewCount']
         self.url = 'https://www.youtube.com/channel/' + self.channel_id
 
-    @staticmethod
-    def get_service():
-        youtube = build('youtube', 'v3', developerKey=api_key)
+    @classmethod
+    def get_service(cls):
+        youtube = build('youtube', 'v3', developerKey=os.getenv('YT_API_KEY'))
         return youtube
 
     @property
@@ -42,7 +42,7 @@ class Channel:
 
     def to_json(self):
         attrs = vars(self)
-        with open('channels_data', 'w') as file:
+        with open('moscowpython', 'w') as file:
             json.dump(attrs, file, ensure_ascii=False)
 
 
