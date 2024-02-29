@@ -26,8 +26,6 @@ class Channel:
 
     def __sub__(self, other):
         return int(self.followers_count) - int(other.followers_count)
-
-    def __sub__(self, other):
         return int(other.followers_count) - int(self.followers_count)
 
     def __gt__(self, other):
