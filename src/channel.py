@@ -18,6 +18,33 @@ class Channel:
         self.views_count = self.get_channel()['items'][0]['statistics']['viewCount']
         self.url = 'https://www.youtube.com/channel/' + self.channel_id
 
+    def __str__(self):
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        return int(self.followers_count) + int(other.followers_count)
+
+    def __sub__(self, other):
+        return int(self.followers_count) - int(other.followers_count)
+
+    def __sub__(self, other):
+        return int(other.followers_count) - int(self.followers_count)
+
+    def __gt__(self, other):
+        return int(self.followers_count) > int(other.followers_count)
+
+    def __ge__(self, other):
+        return int(self.followers_count) >= int(other.followers_count)
+
+    def __lt__(self, other):
+        return int(self.followers_count) < int(other.followers_count)
+
+    def __le__(self, other):
+        return int(self.followers_count) <= int(other.followers_count)
+
+    def __eq__(self, other):
+        return int(self.followers_count) == int(other.followers_count)
+
     @classmethod
     def get_service(cls):
         youtube = build('youtube', 'v3', developerKey=os.getenv('YT_API_KEY'))
